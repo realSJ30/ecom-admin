@@ -13,7 +13,11 @@ const RootPage = () => {
     }
   }, [isOpen, onOpen]);
 
-  return <div className="p-4">Root Page</div>;
+  /* 
+  this is just a null page which triggers 
+  the modal for creating store on first time sign in
+  */
+  return null;
 };
 
 export default RootPage;
