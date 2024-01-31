@@ -24,6 +24,12 @@ export async function PATCH(
       });
     }
 
+    if (!params.storeId) {
+      return new NextResponse("Store ID is required", {
+        status: 400,
+      });
+    }
+
     const store = await prismadb.store.updateMany({
       where: {
         id: params.storeId,

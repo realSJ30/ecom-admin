@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Modal } from "../custom/modal";
+import { Modal } from "@/components/custom/modal";
+import { Button } from "@/components/ui/button";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -35,7 +36,16 @@ const AlertModal: React.FC<AlertModalProps> = ({
       description="This action cannot be undone."
       isOpen={isOpen}
       onClose={onClose}
-    ></Modal>
+    >
+      <div className="pt-5 space-x-2 flex items-center justify-end w-full">
+        <Button disabled={loading} variant="outline" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button disabled={loading} variant="destructive" onClick={onConfirm}>
+          Continue
+        </Button>
+      </div>
+    </Modal>
   );
 };
 
