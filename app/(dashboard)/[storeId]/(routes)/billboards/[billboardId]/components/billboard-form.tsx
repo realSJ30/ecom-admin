@@ -1,5 +1,4 @@
 "use client";
-import ApiAlert from "@/components/custom/api-alert";
 import Heading from "@/components/custom/heading";
 import ImageUpload from "@/components/custom/image-upload";
 import AlertModal from "@/components/modals/alert-modal";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -86,7 +84,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/billboards/${params.storeId}`);
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success(`Billboard [${initialData?.label}] deleted successfully.`);
     } catch (error) {
       toast.error("Make sure you remove all categories using this billboard.");
@@ -162,12 +160,16 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
               )}
             />
           </div>
-          <Button disabled={loading} type="submit">
-            {action}
-          </Button>
+          <div className="flex gap-3">
+            <Button type="button" variant="outline" onClick={() => router.back()}>
+              Cancel
+            </Button>
+            <Button disabled={loading} type="submit">
+              {action}
+            </Button>
+          </div>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
