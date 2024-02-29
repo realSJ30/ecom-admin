@@ -177,6 +177,12 @@ export async function GET(
       where: {
         id: params.productId,
       },
+      include: {
+        images: true,
+        category: true,
+        size: true,
+        color: true,
+      }
     });
 
     return NextResponse.json(product);
